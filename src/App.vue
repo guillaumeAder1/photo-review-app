@@ -1,17 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ListContainer />
+    <PhotoContainer />
+    <CommentContainer />
+    <SelectionContainer />
+    <div v-if="errors.length">
+      <span class="red" v-for="(error, ind) in errors" :key="ind">{{ error.message }}</span>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ListContainer from '@/components/ListContainer'
+import PhotoContainer from '@/components/PhotoContainer'
+import SelectionContainer from '@/components/SelectionContainer'
+import CommentContainer from '@/components/CommentContainer'
 
+import { mapState } from 'vuex'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    ListContainer,
+    PhotoContainer,
+    CommentContainer,
+    SelectionContainer
+  },
+  computed: {
+    ...mapState([
+      'errors',
+      'selectionList'
+    ])
   }
 }
 </script>
@@ -24,5 +42,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  margin: auto;
+  display: flex;
+}
+#app div {
+  flex: 1;
+  margin: 0px;
+  padding: 10px;
+}
+.red{
+  color: red;
 }
 </style>
