@@ -30,7 +30,8 @@ export default new Vuex.Store({
       state.photos = payload.map(item => {
         return {
           ...item,
-          isSelected: item.isSelected || false
+          isSelected: item.isSelected || false,
+          comments: []
         }
       })
     },
@@ -62,6 +63,9 @@ export default new Vuex.Store({
         }
         return item
       })
+    },
+    ADD_COMMENT_TO_SELECTED (state, comment) {
+      state.selectedPhoto.comments.push(comment)
     }
   },
   actions: {
@@ -109,6 +113,10 @@ export default new Vuex.Store({
     },
     updateComment ({commit}, comment) {      
       commit('UPDATE_COMMENT', comment)
+    },
+    addCommentPhoto ({commit, state}, comment) {
+      // state.selectedPhoto.comments = [comment]
+      commit('ADD_COMMENT_TO_SELECTED', comment)
     }
   }
 })

@@ -6,6 +6,11 @@
       <div>
         <img :src="photo.thumbnailUrl"/>
       </div>
+      <div v-if="photo.comments">
+        <div v-for="(comment, index) in photo.comments" :key="index">
+          {{ comment.body.substring(0, 20) }}...
+        </div>
+      </div>
       <button @click="removeFromSelection(photo)">remove #{{photo.id}}</button>
     </div>
   </div>

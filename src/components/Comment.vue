@@ -7,8 +7,8 @@
     </div>
     <br>
     <button @click="editComment(comment)">edit</button>
-    <button @click="addComment(comment)">add</button>
     <button @click="saveComment(comment)">save</button>
+    <button :disabled="!this.isSelected" @click="addComment(comment)">add to selection</button>
   </div>
 </template>
 
@@ -18,6 +18,9 @@ export default {
   props: {
     comment: {
       type: Object
+    },
+    isSelected: {
+      type: Boolean
     }
   },
   data() {
@@ -27,10 +30,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'updateComment'
+      'updateComment',
+      'addCommentPhoto'
     ]),
     addComment (comment) {
-
+      this.addCommentPhoto(comment)
     },
     editComment (comment) {
       console.log(comment)
