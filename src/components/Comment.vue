@@ -6,8 +6,8 @@
       <code :contenteditable="editable" ref="textField">{{comment.body}}</code>
     </div>
     <br>
-    <button @click="editComment(comment)">edit</button>
-    <button @click="saveComment(comment)">save</button>
+    <button v-if="!editable" @click="editComment(comment)">edit</button>
+    <button v-if="editable" @click="saveComment(comment)">save</button>
     <button :disabled="!this.isSelected" @click="addComment(comment)">add to selection</button>
   </div>
 </template>
