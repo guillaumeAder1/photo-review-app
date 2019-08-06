@@ -1,5 +1,8 @@
 # photo-app-vuex
 
+[see demo](https://guillaumeader1.github.io/photo-review-app/)
+
+
 ## Project setup
 ```
 npm install
