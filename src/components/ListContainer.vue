@@ -2,9 +2,11 @@
   <div class="list-container">
     <h1>Photos</h1>
     <input type="text" v-model="search" />
-    <ListPhotos :list="filtered" @selection="selectPhoto" />  
-    <button @click="updatePagination(false)">prev</button>
-    <button @click="updatePagination(true)">next</button>
+    <ListPhotos :list="filtered" @selection="selectPhoto" /> 
+    <div>
+      <button @click="updatePagination(false)">prev</button>
+      <button @click="updatePagination(true)">next</button>
+    </div> 
   </div>
 </template>
 

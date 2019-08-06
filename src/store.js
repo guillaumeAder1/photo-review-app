@@ -54,6 +54,14 @@ export default new Vuex.Store({
     },
     ADD_COMMENTS (state, payload) {
       state.comments = payload
+    },
+    UPDATE_COMMENT (state, comment) {
+      state.comments = state.comments.map( item => {
+        if (item.id === comment.id) {
+          return comment
+        }
+        return item
+      })
     }
   },
   actions: {
@@ -69,7 +77,8 @@ export default new Vuex.Store({
         commit('ADD_ERROR', error)
       }
     },
-    async fetchComments ({commit}, id) {
+    async fetchComments ({commit, state}, id) {
+      if (state.comments.length) return
       try {
         const res = await axios(`https://jsonplaceholder.typicode.com/photos/${id}/comments`)
         console.log(res.data)
@@ -97,6 +106,9 @@ export default new Vuex.Store({
       if (getIndex > -1) {
         commit('REMOVE_FROM_SELECTION', getIndex)
       }
+    },
+    updateComment ({commit}, comment) {      
+      commit('UPDATE_COMMENT', comment)
     }
   }
 })
